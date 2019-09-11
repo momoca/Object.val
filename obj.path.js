@@ -1,5 +1,5 @@
 function o(obj) {
-    var current = obj;
+    var current = obj || {};
     return {
         path: function(_path, _value, _obj) {
             var i;
