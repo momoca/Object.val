@@ -1,11 +1,11 @@
 function o(obj) {
     var current = obj;
     return {
-        path:  function(_path, _value,_obj) {
-			var i;
-			if(!_obj){
-				_obj=current;
-			}
+        path: function(_path, _value, _obj) {
+            var i;
+            if (!_obj) {
+                _obj = current;
+            }
             if (typeof _path === 'string') {
                 return this.path(_path.split('.'), _value);
             }
@@ -26,7 +26,7 @@ function o(obj) {
                     return _obj;
                 }
                 if (!_obj[_path[0]]) return _obj;
-                _obj[_path[0]] = this.path(_path.slice(1), _value,_obj[_path[0]]);
+                _obj[_path[0]] = this.path(_path.slice(1), _value, _obj[_path[0]]);
             } else {
                 //set
                 if (_path.length === 1) {
@@ -34,9 +34,9 @@ function o(obj) {
                     return _obj;
                 }
                 if (!_obj[_path[0]] || !(_obj[_path[0]] instanceof Object)) _obj[_path[0]] = {};
-                _obj[_path[0]]=this.path(_path.slice(1), _value,_obj[_path[0]]);
+                _obj[_path[0]] = this.path(_path.slice(1), _value, _obj[_path[0]]);
             }
             return _obj;
         }
-    }
+    };
 }
