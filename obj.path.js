@@ -1,10 +1,14 @@
-function o(obj) {
+const o = function(obj) {
     var current = obj || {};
     return {
         path: function(_path, _value, _obj) {
+            console.log()
             var i;
             if (!_obj) {
                 _obj = current;
+            }
+            if (_path && arguments.length == 1) {
+                return _path;
             }
             if (typeof _path === 'string') {
                 return this.path(_path.split('.'), _value);
@@ -39,4 +43,4 @@ function o(obj) {
             return _obj;
         }
     };
-}
+};
