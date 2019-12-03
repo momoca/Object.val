@@ -1,14 +1,11 @@
+
 const o = function(obj) {
     var current = obj || {};
     return {
         path: function(_path, _value, _obj) {
-            console.log()
             var i;
             if (!_obj) {
                 _obj = current;
-            }
-            if (_path && arguments.length == 1) {
-                return _path;
             }
             if (typeof _path === 'string') {
                 return this.path(_path.split('.'), _value);
@@ -33,6 +30,9 @@ const o = function(obj) {
                 _obj[_path[0]] = this.path(_path.slice(1), _value, _obj[_path[0]]);
             } else {
                 //set
+                if(_path===null){
+                    return _value;
+                }
                 if (_path.length === 1) {
                     _obj[_path[0]] = _value;
                     return _obj;
