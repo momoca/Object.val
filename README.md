@@ -2,6 +2,7 @@
 Javascript中设置/获取/删除Object的值,支持路径.
 ```js
 var a = { ab: { cd: 123 } };
+//a = o().path(null,{ ab: { cd: 123 }})
 //读取数据
 console.log('get ("ab.cd"):', a.val('ab.cd')); //get
 //设置值,如果路径重叠值将被覆盖
