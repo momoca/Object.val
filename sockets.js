@@ -46,6 +46,21 @@ const set_socket = function(namespace, socket_var, ok, err) {
         o = function(obj) {
             var current = obj || {};
             return {
+                merge: function(obj1, obj2) {
+                    if (obj1.constructor !== Object && obj2.constructor !== Object) return obj2;
+                    for (var p in obj2) {
+                        try {
+                            if (obj1[p].constructor == Object && obj2[p].constructor == Object) {
+                                obj1[p] = this.merge(obj1[p], obj2[p]);
+                            } else {
+                                obj1[p] = obj2[p];
+                            }
+                        } catch (e) {
+                            obj1[p] = obj2[p];
+                        }
+                    }
+                    return obj1;
+                },
                 path: function(_path, _value, _obj) {
                     var i;
                     if (!_obj) {
@@ -108,13 +123,14 @@ const set_socket = function(namespace, socket_var, ok, err) {
         let data = JSON.parse(decodeURIComponent(msg.data));
         let c_data = cache(data.key);
         if (!c_data) {
-            //null
+            //create
             cache(data.key, data);
             if (ok) ok(data);
             return;
         } else {
-            //true
+            //update
             if (c_data.lasttime <= data.lasttime) {
+                data = o().merge(c_data, data);
                 tmp = data;
             } else {
                 tmp = c_data;
@@ -129,6 +145,8 @@ const set_socket = function(namespace, socket_var, ok, err) {
     return function(key, path, value) {
         let data = cache(key);
         data = data || {};
+        _val = o(data.data).path(path);
+        if (_val !== undefined) value = o().merge(_val, value);
         data = o(data.data).path(path, value);
         let msg = {
             key: key,
