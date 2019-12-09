@@ -110,7 +110,7 @@ const set_socket = function(namespace, socket_var, ok, err) {
         if (!c_data) {
             //null
             cache(data.key, data);
-            if (ok) ok(tmp);
+            if (ok) ok(data);
             return;
         } else {
             //true
