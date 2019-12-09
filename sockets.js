@@ -135,6 +135,7 @@ const set_socket = function(namespace, socket_var, ok, err) {
             lasttime: (new Date()).getTime(),
             data: data,
         };
+        cache(msg.key, msg);
         window[socket_var].send(encodeURIComponent(JSON.stringify(msg)));
     };
 };
