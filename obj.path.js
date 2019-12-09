@@ -2,6 +2,21 @@
 const o = function(obj) {
     var current = obj || {};
     return {
+        merge: function(obj1, obj2) {
+            if (obj1.constructor !== Object && obj2.constructor !== Object) return obj2;
+            for (var p in obj2) {
+                try {
+                    if (obj1[p].constructor == Object && obj2[p].constructor == Object) {
+                        obj1[p] = this.merge(obj1[p], obj2[p]);
+                    } else {
+                        obj1[p] = obj2[p];
+                    }
+                } catch (e) {
+                    obj1[p] = obj2[p];
+                }
+            }
+            return obj1;
+        },
         path: function(_path, _value, _obj) {
             var i;
             if (!_obj) {
