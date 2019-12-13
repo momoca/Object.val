@@ -22,7 +22,7 @@ const o = function(obj) {
             if (!_obj) {
                 _obj = current;
             }
-            if (typeof _path === 'string') {
+            if (typeof(_path) === 'string') {
                 return this.path(_path.split('.'), _value);
             }
             if (_value === undefined) {
