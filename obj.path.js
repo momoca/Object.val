@@ -8,6 +8,11 @@ const o = function(obj) {
                 try {
                     if (obj1[p].constructor == Object && obj2[p].constructor == Object) {
                         obj1[p] = this.merge(obj1[p], obj2[p]);
+                    } else if (obj1[p].constructor == Object && obj2[p].constructor == Array) {
+                        if (obj2[p].length === 0) {
+                            obj2[p] = {}
+                        }
+                        obj1[p] = merge(obj1[p], obj2[p]);
                     } else {
                         obj1[p] = obj2[p];
                     }
