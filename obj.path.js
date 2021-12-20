@@ -12,7 +12,7 @@ const o = function(obj) {
                         if (obj2[p].length === 0) {
                             obj2[p] = {}
                         }
-                        obj1[p] = merge(obj1[p], obj2[p]);
+                        obj1[p] = this.merge(obj1[p], obj2[p]);
                     } else {
                         obj1[p] = obj2[p];
                     }
