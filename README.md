@@ -49,7 +49,7 @@ let a3 = path('a.b.c', a) 对象获取值方式3: {"c":1234,"d":123}
 a = path('a.b.d', null, a) 对象删除属性: {"a":{"b":{"c":1234}}}
 a = path('a.b', null, a) 对象删除属性: {"a":{}}
 ```
-##wx.path.js
+## wx.path.js
 ```js
 let a = {}
 o(a).path('a.b.c', 123)
