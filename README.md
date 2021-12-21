@@ -49,3 +49,31 @@ let a3 = path('a.b.c', a) 对象获取值方式3: {"c":1234,"d":123}
 a = path('a.b.d', null, a) 对象删除属性: {"a":{"b":{"c":1234}}}
 a = path('a.b', null, a) 对象删除属性: {"a":{}}
 ```
+##wx.path.js
+```js
+let a = {}
+o(a).path('a.b.c', 123)
+console.log("let a = {};o(a).path('a.b.c', 123) 空对象设置值:", JSON.stringify(a));
+a = o(a).path('a.b.d', 123)
+console.log("a = o(a).path('a.b.d', 123) 对象二次赋值:", JSON.stringify(a));
+a = o(a).path('a.b.c', 1234)
+console.log("a = o(a).path('a.b.c', 1234) 对象值修改:", JSON.stringify(a));
+let a1 = o(a).path('a.b.c')
+console.log("let a1 = o(a).path('a.b.c') 对象获取值方式1:", JSON.stringify(a1));
+let a2 = o(a).path('a.b.c')
+console.log("let a2 = o(a).path('a.b.c') 对象获取值方式2:", JSON.stringify(a2));
+let a3 = o(a).path('a.b')
+console.log("let a3 = o(a).path('a.b') 对象获取值方式3:", JSON.stringify(a3));
+a = o(a).path('a.b.d', null)
+console.log("a = o(a).path('a.b.d', null) 对象删除属性:", JSON.stringify(a));
+a = o(a).path('a.b', null)
+console.log("a = o(a).path('a.b', null) 对象删除属性:", JSON.stringify(a));
+a = o(a).path('a.b.d1', {
+    d1: 'd1'
+})
+console.log("a = o(a).path('a.b.d1', { d1: 'd1' }) 对象设置对象属性:", JSON.stringify(a));
+a = o(a).path('a.b.d2', {
+    d2: 'd2'
+})
+console.log("a = o(a).path('a.b.d2', { d2: 'd2' }) 对象设置对象属性:", JSON.stringify(a));
+```
